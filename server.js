@@ -3,11 +3,13 @@ import { fileURLToPath } from 'url'; // New import for file URL conversion
 import express from "express";
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cors from "cors"
 import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express"
 import claimsRoutes from './routes/claims.js'
 import userRoutes from './routes/users.js'
 import dashboardRoutes from './routes/dashboard.js'
+// const cors = require('cors');
 
 dotenv.config();
 
@@ -35,6 +37,7 @@ const swaggerOptions = {
 const swaggerSpec = swaggerJsDoc(swaggerOptions);
 
 // middleware
+app.use(cors());
 app.use(express.json());
 
 app.use((req, res, next) => {
